@@ -61,6 +61,7 @@ class Article(CreateTimeModel):  # 文章
         return self.title
 
 
+
 class Comment(CreateTimeModel):  # 评论
     user = models.ForeignKey(User, verbose_name='用户', on_delete=models.CASCADE)  # 评论的人
     article = models.ForeignKey(Article, verbose_name='文章', on_delete=models.CASCADE)  # 评论的哪篇文章
@@ -72,3 +73,6 @@ class Comment(CreateTimeModel):  # 评论
 
     def __str__(self):
         return self.content
+
+    # def comment_count(self):
+    #     return Comment.objects.filter(article=self).count()

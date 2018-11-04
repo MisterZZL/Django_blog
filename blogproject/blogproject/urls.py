@@ -14,9 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-from blogproject.views import hello
+from django.urls import path, include
 
 # str：匹配除了路径分隔符（/）之外的非空字符串，
 # 如果没有转换器，默认使用str作为转换器。
@@ -26,5 +24,5 @@ from blogproject.views import hello
 # path：匹配任何非空字符串，包含了路径分隔符（/）
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', hello),
+    path('', include('blog.urls')),
 ]
