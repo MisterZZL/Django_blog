@@ -1,122 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Ten的网络日志</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/css/github.css">
-  <link rel="stylesheet" href="/static/css/custom.css">
-</head>
-<body>
-<header class="container">
-  <div class="row margin-tb-2">
-    <div class="col-md-8 col-sm-7 col-xs-4">
-      <h1><a href="">Ten的网络日志</a></h1>
-    </div>
-    <div class="col-md-4 col-sm-5 col-xs-8">
-      <div>
-        <a href="#">首页</a> | <a href="#" target="_blank">CMS</a> |
-        <a href="#register">注册</a> |
-        <a href="#login/">登录</a>
-      </div>
-      <div class="search-form">
-        <form role="search" action="#">
-          <input type="search" placeholder="请输入关键字" required="" name="q" value="">
-          <input type="submit" value="搜索">
-        </form>
-      </div>
-    </div>
-  </div>
-  <hr>
-</header>
-<div class="container">
-  <div class="row">
+{% extends 'base.html' %}
+{% block content %}
     <main class="col-md-8">
-      {% for article in article_list %}
-        <article>
-        <h3>{{ article.title }}</h3>
-        <div>
+        {% for article in article_list %}
+            <article>
+                <h3>{{ article.title }}</h3>
+                <div>
           <span>{{ article.author }}{{ article.created_time }}
             <a href="{% url 'blog:detail' article.pk %}">阅读({{ article.views }})</a>
             <a href="{% url 'blog:detail' article.pk %}#coment">评论({{ article.comment_set.count }})</a>
           </span>
-        </div>
-        <p>{{ article.excerpt }}</p>
-        <div>
-          <a href="{% url 'blog:detail' article.pk %}" class="more-link">继续阅读</a>
-        </div>
-        <hr>
-      </article>
-      {% empty %}
-        暂无文章！
+                </div>
+                <p>{{ article.excerpt }}</p>
+                <div>
+                    <a href="{% url 'blog:detail' article.pk %}" class="more-link">继续阅读</a>
+                </div>
+                <hr>
+            </article>
+        {% empty %}
+            暂无文章！
         {% endfor %}
 
-      <nav class="margin-tb-1 text-center">
-        <strong> 1 </strong>
-        <a href="#">下一页</a>
-      </nav>
+        <nav class="margin-tb-1 text-center">
+            <strong> 1 </strong>
+            <a href="#">下一页</a>
+        </nav>
     </main>
-    <aside class="col-md-4">
-      <div>
-        <h5>最新文章</h5>
-        <ul>
-          <li>
-            <a href="#">Django教程3</a>
-          </li>
-          <li>
-            <a href="#">Django教程2</a>
-          </li>
-          <li>
-            <a href="#">Django教程1</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h5>归档</h5>
-        <ul>
-          <li>
-            <a href="#">2018 年 10 月</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h5>分类</h5>
-        <ul>
-          <li>
-            <a href="#">flask课程 (2)</a>
-          </li>
-          <li>
-            <a href="#">Django课程 (1)</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h5>标签云</h5>
-        <ul>
-          <li>
-            <a href="#">python (3)</a>
-          </li>
-          <li>
-            <a href="#">flask (1)</a>
-          </li>
-          <li>
-            <a href="#">django (2)</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <a href="#">RSS订阅</a>
-      </div>
-    </aside>
-  </div>
-</div>
-<footer class="container">
-  <div class="row">
-    <div class="col-md-12 text-center margin-tb-1">
-      <a href="https://www.dongnaoedu.com/" target="_blank"> © 2018 dongnaoedu.com</a>
-    </div>
-  </div>
-</footer>
-</body>
-</html>
+{% endblock %}

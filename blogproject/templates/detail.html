@@ -1,183 +1,59 @@
-<!DOCTYPE html>
-<!-- saved from url=(0030)http://127.0.0.1:8000/detail/3 -->
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Ten的网络日志-Django教程3</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/css/github.css">
-  <link rel="stylesheet" href="/static/css/custom.css">
-</head>
-<body>
-<header class="container">
-  <div class="row margin-tb-2">
-    <div class="col-md-8 col-sm-7 col-xs-4">
-      <h1>Django教程3</h1>
-    </div>
-    <div class="col-md-4 col-sm-5 col-xs-8">
-      <div>
-        <a href="#">首页</a> | 
-        <a href="#" target="_blank">CMS</a> |
-        <a href="#">注册</a> |
-        <a href="#">登录</a>
-      </div>
-      <div class="search-form">
-        <form role="search" action="#">
-          <input type="search" placeholder="请输入关键字" required="" name="q" value="">
-          <input type="submit" value="搜索">
-        </form>
-      </div>
-    </div>
-  </div>
-  <hr>
-</header>
-<div class="container">
-  <div class="row">
+{% extends 'base.html' %}
+{% block content %}
     <main class="col-md-8">
-      <div class="text-center margin-tb-1">
-        ten1 2018年10月16日 10:29 阅读(70) 评论(6)
-      </div>
-      <article>
-        <h1 id="_1">一级标题</h1>
-        <h2 id="_2">二级标题</h2>
-        <h3 id="_3">三级标题</h3>
-        <ul>
-          <li>列表项1</li>
-          <li>列表项2</li>
-          <li>列表项3</li>
-        </ul>
-        <blockquote>
-          <p>这是一段引用</p>
-        </blockquote>
-        <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">detail</span><span
-            class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span
-            class="p">):</span>
-    <span class="n">post</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span
-              class="p">(</span><span class="n">Post</span><span class="p">,</span> <span class="n">pk</span><span
-              class="o">=</span><span class="n">pk</span><span class="p">)</span>
-    <span class="n">post</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span
-              class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span
-              class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">body</span><span
-              class="p">,</span>
-                                  <span class="n">extensions</span><span class="o">=</span><span class="p">[</span>
-                                      <span class="s1">'markdown.extensions.extra'</span><span class="p">,</span>
-                                      <span class="s1">'markdown.extensions.codehilite'</span><span class="p">,</span>
-                                      <span class="s1">'markdown.extensions.toc'</span><span class="p">,</span>
-                                  <span class="p">])</span>
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span
-              class="n">request</span><span class="p">,</span> <span class="s1">'blog/detail.html'</span><span
-              class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{</span><span
-              class="s1">'post'</span><span class="p">:</span> <span class="n">post</span><span class="p">})</span>
-</pre>
+        <div class="text-center margin-tb-1">
+            {{ article.author }}
+            {{ article.created_time }}
+            阅读({{ article.views }})
+            评论({{ article.comment_set.count }})
         </div>
-      </article>
-      <div id="coment" class="margin-tb-2">
-        <h5>
-          留言 (6条)
-          <a href="#" class="font-size-10">我要留言</a>
-        </h5>
-        <hr>
-        <ul class="no-padding-left">
-          <li class="comment margin-tb-1">
-            <span class="font-size-8">ten1 2018年10月16日 11:10说：</span>
-            <div class="text">
-              很好的文章
-            </div>
-          </li>
-          <li class="comment margin-tb-1">
-            <span class="font-size-8">ten1 2018年10月16日 12:15说：</span>
-            <div class="text">
-              很帅
-            </div>
-          </li>
-          <li class="comment margin-tb-1">
-            <span class="font-size-8">ten1 2018年10月16日 16:59说：</span>
-            <div class="text">
-              123123123
-            </div>
-          </li>
-          <li class="comment margin-tb-1">
-            <span class="font-size-8">ten1 2018年10月16日 17:07说：</span>
-            <div class="text">
-              123123
-            </div>
-          </li>
-          <li class="comment margin-tb-1">
-            <span class="font-size-8">ten1 2018年10月16日 17:08说：</span>
-            <div class="text">
-              123123
-            </div>
-          </li>
-          <li class="comment margin-tb-1">
-            <span class="font-size-8">ten1 2018年10月16日 17:09说：</span>
-            <div class="text">
-              q23123123
-            </div>
-          </li>
-        </ul>
-      </div>
+        <article>
+            {{ md_content | safe }}
+        </article>
+        <div id="coment" class="margin-tb-2">
+            <h5>
+                留言 (6条)
+                <a href="#" class="font-size-10">我要留言</a>
+            </h5>
+            <hr>
+            <ul class="no-padding-left">
+                <li class="comment margin-tb-1">
+                    <span class="font-size-8">ten1 2018年10月16日 11:10说：</span>
+                    <div class="text">
+                        很好的文章
+                    </div>
+                </li>
+                <li class="comment margin-tb-1">
+                    <span class="font-size-8">ten1 2018年10月16日 12:15说：</span>
+                    <div class="text">
+                        很帅
+                    </div>
+                </li>
+                <li class="comment margin-tb-1">
+                    <span class="font-size-8">ten1 2018年10月16日 16:59说：</span>
+                    <div class="text">
+                        123123123
+                    </div>
+                </li>
+                <li class="comment margin-tb-1">
+                    <span class="font-size-8">ten1 2018年10月16日 17:07说：</span>
+                    <div class="text">
+                        123123
+                    </div>
+                </li>
+                <li class="comment margin-tb-1">
+                    <span class="font-size-8">ten1 2018年10月16日 17:08说：</span>
+                    <div class="text">
+                        123123
+                    </div>
+                </li>
+                <li class="comment margin-tb-1">
+                    <span class="font-size-8">ten1 2018年10月16日 17:09说：</span>
+                    <div class="text">
+                        q23123123
+                    </div>
+                </li>
+            </ul>
+        </div>
     </main>
-    <aside class="col-md-4">
-      <div>
-        <h5>最新文章</h5>
-        <ul>
-          <li>
-            <a href="#">Django教程3</a>
-          </li>
-          <li>
-            <a href="#">Django教程2</a>
-          </li>
-          <li>
-            <a href="#">Django教程1</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h5>归档</h5>
-        <ul>
-          <li>
-            <a href="#">2018 年 10 月</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h5>分类</h5>
-        <ul>
-          <li>
-            <a href="#">flask课程 (2)</a>
-          </li>
-          <li>
-            <a href="#">Django课程 (1)</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h5>标签云</h5>
-        <ul>
-          <li>
-            <a href="#">python (3)</a>
-          </li>
-          <li>
-            <a href="#">flask (1)</a>
-          </li>
-          <li>
-            <a href="#">django (2)</a>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <a href="#">RSS订阅</a>
-      </div>
-    </aside>
-  </div>
-</div>
-<footer class="container">
-  <div class="row">
-    <div class="col-md-12 text-center margin-tb-1">
-      <a href="https://www.dongnaoedu.com/" target="_blank"> © 2018 dongnaoedu.com</a>
-    </div>
-  </div>
-</footer>
-</body>
-</html>
+{% endblock %}
