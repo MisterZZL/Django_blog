@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加类别</title></head>
+<body>
+<h5>添加类别</h5>
+<form method="post">{% csrf_token %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <p style="color: red">
+                {{ error }}
+            </p>
+        {% endfor %}
+        {% if field.field.required %}
+            <span style="color: red">* </span>
+        {% endif %}
+        <label>{{ field.label }}</label>
+        {{ field }}<br/>
+    {% endfor %}
+    <input type="submit" value="提交"></form>
+</body>
+</html>

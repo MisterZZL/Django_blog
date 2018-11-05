@@ -8,7 +8,7 @@
             评论({{ article.comment_set.count }})
         </div>
         <article>
-            {{ md_content | safe }}
+            {{ article.md_content | safe }}
         </article>
         <div id="coment" class="margin-tb-2">
             <h5>

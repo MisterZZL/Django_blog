@@ -1,6 +1,5 @@
+import markdown
 from django.db import models
-
-
 
 # Create your models here.
 
@@ -23,6 +22,7 @@ class CreateTimeModel(models.Model):
 
 class Category(models.Model):  # 文章分类
     name = models.CharField(verbose_name='名称', max_length=32, unique=True)
+    desc = models.TextField(verbose_name='描述', blank=True)
 
     class Meta:
         verbose_name = '类别'
@@ -60,6 +60,14 @@ class Article(CreateTimeModel):  # 文章
     def __str__(self):
         return self.title
 
+    def md_content(self):
+        self.md_content = markdown.markdown(self.content,
+                                            extensions=[
+                                                'markdown.extensions.extra',  # 基础应用
+                                                'markdown.extensions.codehilite',  # 代码高亮
+                                                'markdown.extensions.toc'  # 目录结构
+                                            ])
+        return self.md_content
 
 
 class Comment(CreateTimeModel):  # 评论

@@ -123,3 +123,4 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'users.User'
+PER_PAGE = 10
