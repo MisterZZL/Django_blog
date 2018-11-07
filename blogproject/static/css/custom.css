@@ -76,3 +76,6 @@ ul {
 .font-size-10 {
     font-size: 1rem;
 }
+.article{
+    word-wrap: break-word;
+}

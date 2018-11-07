@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'm$shls^t*p-*69glx=!i1^5vwx4l$=unpg_tq04j00w1e*l#gu'
+SECRET_KEY = '7v-0tm%m&#*_9y@54kze&%7m*&&1lq07)&fx0c+=*(i&ram96e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'users',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -51,6 +51,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'blogproject.urls'
 
+# DjangoTemplates
+# jinja2  'BACKEND': 'django.template.backends.jinja2.Jinja2',
+# jinja2 对 app下面的templates不会读取
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -62,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'blog.context_processors.title'
             ],
         },
     },
@@ -79,7 +85,7 @@ DATABASES = {
         'PORT': 3306,
         'USER': 'root',
         'PASSWORD': '123456',
-        'NAME': 'blog',
+        'NAME': 'blog_1805',
     }
 }
 
@@ -113,14 +119,25 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = False
+# 如果为True,记录到数据库的时间会转换成格林治时间，导致混乱
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+# 静态文件路径列表的配置
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+# 静态文件路由前缀
+STATIC_URL = '/static/'
+
 AUTH_USER_MODEL = 'users.User'
-PER_PAGE = 10
+
+
+PER_PAGE = 2
+
+TITLE = 'MisterZZL的网络日志'
+
+LOGIN_REDIRECT_URL = '/'

@@ -6,7 +6,7 @@ from .models import Category, Tag, Article, Comment
 
 
 class ArticleAdimn(admin.ModelAdmin):
-    list_display = ['title', 'author', 'excerpt', 'views', 'category', 'created_time']
+    list_display = ['title', 'author', 'excerpt', 'views', 'article', 'created_time']
     search_fields = ['title', 'content','category__name']  # 增加搜索功能
 
 

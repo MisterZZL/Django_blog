@@ -22,8 +22,12 @@ from django.urls import path, include
 # slug：匹配字母、数字以及横杠、下划线组成的字符串。
 # uuid：匹配格式化的uuid，如 075194d3-6885-417e-a8a8-6c931e272f00。
 # path：匹配任何非空字符串，包含了路径分隔符（/）
+from django.contrib import admin
+from django.urls import path, include
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-    path('category/', include('blog.curls')),
+    # path('', include('users.urls')),
+    path('article/', include('blog.curls'))
 ]
