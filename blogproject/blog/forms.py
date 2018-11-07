@@ -7,4 +7,4 @@ class ArticleModelForm(forms.ModelForm):
     class Meta:
         model = Article  # 指定模型
         # fields = ['name','desc']#指定要验证的字段
-        exclude = []  # 排除模型中的字段
+        exclude = []

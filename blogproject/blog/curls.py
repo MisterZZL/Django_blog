@@ -1,8 +1,10 @@
 from django.urls import path
-from . import views
 
-app_name = 'blog'
+from . import cviews
+
+app_name = 'article'  # 命名空间
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('detail/<pk>', views.detail, name='detail'),
+    path('add', cviews.add, name='add'),
+
 ]
+#
