@@ -1,0 +1,12 @@
+{% for field in form %}
+    <div class="form-group">
+        {% csrf_token %}
+        <label>
+            {% if field.field.required %}<em class="red-text">*</em>{% endif %}
+            {{ field.label }}
+        </label>
+        {{ field }}
+        {{ field.errors }}
+        {{ field.help_text }}
+    </div>
+{% endfor %}

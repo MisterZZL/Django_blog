@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>{{ TITLE }}</title>
+    <title>{% block title %}{{ TITLE }}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/github.css' %}">
@@ -13,19 +13,19 @@
 <header class="container">
     <div class="row margin-tb-2">
         <div class="col-md-8 col-sm-7 col-xs-4">
-            <h1><a href="">{{ TITLE }}</a></h1>
+            <h1>{% block page_title %}{{ TITLE }}{% endblock %}</h1>
         </div>
         <div class="col-md-4 col-sm-5 col-xs-8">
             <div>
                 {% if user.is_authenticated %}
                     欢迎您， {{ user }}
                     <a href="{% url 'blog:index' %}">首页</a> | <a href="/admin" target="_blank">CMS</a> |
-                    <a href="#register">注销</a> |
-                    <a href="#login/">修改密码</a>
+                    <a href="{% url 'users:logout' %}">注销</a> |
+                    <a href="{% url 'users:password_change' %}">修改密码</a>
                 {% else %}
                     <a href="{% url 'blog:index' %}">首页</a> | <a href="/admin" target="_blank">CMS</a> |
-                    <a href="#register">注册</a> |
-                    <a href="#login/">登录</a>
+                    <a href="{% url 'users:register' %}">注册</a> |
+                    <a href="{% url 'users:login' %}">登录</a>
                 {% endif %}
             </div>
             <div class="search-form">
@@ -41,6 +41,11 @@
 <div class="container">
     <div class="row">
         <main class="col-md-8">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
             {% block content %}
             {% endblock %}
         </main>

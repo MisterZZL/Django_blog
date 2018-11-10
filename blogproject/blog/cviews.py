@@ -35,7 +35,7 @@ def add(request):
 def edit(request,pk):
     article = get_object_or_404(Article,pk = pk)
     if request.method == 'POST':
-        form = ArticleModelForm(request.POST)
+        form = ArticleModelForm(request.POST,instance=article)
         if form.is_valid():  # 验证通过，数据合法
             form.save()  # 保存数据
             messages.add_message(request, messages.SUCCESS, '编辑成功')  # 闪现消息
