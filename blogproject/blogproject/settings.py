@@ -62,6 +62,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'blog.context_processors.title'
             ],
         },
     },
@@ -123,4 +124,5 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'users.User'
-PER_PAGE = 10
+PER_PAGE = 2
+TITLE = 'MisterZZL的博客站点'

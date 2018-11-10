@@ -83,4 +83,4 @@ class Comment(CreateTimeModel):  # 评论
         return self.content
 
     # def comment_count(self):
-    #     return Comment.objects.filter(category=self).count()
+    #     return Comment.objects.filter(article=self).count()
