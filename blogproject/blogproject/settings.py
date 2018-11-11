@@ -134,3 +134,16 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'users.backends.EmailModelBackend',
 ]
+# 配置发送邮件的类
+# 会在控制台打印发送给你的邮件
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# 真实邮件的发送配置
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.qq.com'
+# EMAIL_PORT = '465'
+# EMAIL_HOST_USER = '619246759@qq.com'
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# EMAIL_HOST_PASSWORD = 'demoauth_code'
+# EMAIL_USE_TLS = False
+# EMAIL_USE_SSL = True

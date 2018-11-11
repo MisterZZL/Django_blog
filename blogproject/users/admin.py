@@ -7,12 +7,12 @@ from users.models import User
 
 
 class UsersUserAdmin(UserAdmin):
-    add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('username', 'nickname', 'email', 'password1', 'password2'),
-        }),
-    )
+    # add_fieldsets = (
+    #     (None, {
+    #         'classes': ('wide',),
+    #         'fields': ('username', 'nickname', 'email', 'password1', 'password2'),
+    #     }),
+    # )
 
     def __init__(self, *args, **kwargs):
         super(UsersUserAdmin, self).__init__(*args, **kwargs)
@@ -20,6 +20,6 @@ class UsersUserAdmin(UserAdmin):
         self.list_filter = self.list_filter + ('nickname',)  # 界面右侧的过滤器
         self.search_fields = self.search_fields + ('nickname',)  # 搜索过滤（通过那些字段来搜索）
         self.fieldsets[1][1]['fields'] = ('first_name', 'last_name', 'email', 'nickname')
-
+        self.add_fieldsets[0][1]['fields']=('username', 'nickname', 'email', 'password1', 'password2')
 
 admin.site.register(User, UsersUserAdmin)
