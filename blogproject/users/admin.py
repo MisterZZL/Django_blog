@@ -7,6 +7,13 @@ from users.models import User
 
 
 class UsersUserAdmin(UserAdmin):
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'nickname', 'email', 'password1', 'password2'),
+        }),
+    )
+
     def __init__(self, *args, **kwargs):
         super(UsersUserAdmin, self).__init__(*args, **kwargs)
         self.list_display = self.list_display + ('nickname',)  # 展示字段

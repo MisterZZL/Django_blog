@@ -4,7 +4,6 @@ from users.forms import AuthForm
 
 from . import views
 
-
 SUCCESS_URL = '/success?msg='
 
 app_name = 'users'  # 命名空间

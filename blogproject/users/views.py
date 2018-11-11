@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 
 from users.forms import RegisterForm
 
@@ -14,6 +14,7 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request, 'form.html', {'form': form, 'title': '注册'})
+
 
 def success(request):
     msg = request.GET.get('msg', '恭喜你，操作成功！')

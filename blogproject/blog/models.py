@@ -51,7 +51,7 @@ class Article(CreateTimeModel):  # 文章
     views = models.PositiveIntegerField(verbose_name='浏览次数', default=0)  # 阅读量
     modified_time = models.DateTimeField(verbose_name='修改时间', auto_now=True)  # 修改时间
     category = models.ForeignKey(Category, verbose_name='类别', on_delete=models.CASCADE)  # 文章的分类
-    tags = models.ManyToManyField(Tag, verbose_name='标签')  # 一篇文章可以有多个标签，一个标签可以对应多篇文章，多对多
+    tags = models.ManyToManyField(Tag, verbose_name='标签', blank=True)  # 一篇文章可以有多个标签，一个标签可以对应多篇文章，多对多
 
     class Meta:
         verbose_name = '文章'

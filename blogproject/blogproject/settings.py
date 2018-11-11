@@ -127,4 +127,10 @@ AUTH_USER_MODEL = 'users.User'
 PER_PAGE = 2
 TITLE = 'MisterZZL的博客站点'
 
-LOGIN_REDIRECT_URL='/'
+LOGIN_REDIRECT_URL = '/'
+
+# 验证用户使用的类
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'users.backends.EmailModelBackend',
+]
